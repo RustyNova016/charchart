@@ -46,11 +46,10 @@ impl BarGraph {
         let chars = (data.value / max_y) * Decimal::from(self.width);
         let bar_character = data.bar_character.as_ref().unwrap_or(&self.bar_character);
 
-        for _ in 0
-            ..chars
-                .round_dp_with_strategy(0, RoundingStrategy::MidpointAwayFromZero)
-                .to_u16() // Anything bigger than an u16 is unrealistic, and timeout `cargo mutants` tests
-                .unwrap()
+        for _ in 0..chars
+            .round_dp_with_strategy(0, RoundingStrategy::MidpointAwayFromZero)
+            .to_u16() // Anything bigger than an u16 is unrealistic, and timeout `cargo mutants` tests
+            .unwrap()
         {
             line.push(*bar_character);
         }
@@ -66,7 +65,7 @@ impl BarGraph {
             .as_ref()
             .unwrap_or(&self.bar_value_color);
         line.push_str(
-            &format!(" - ({})", data.value)
+            &format!(" - ({})", data.value_display())
                 .truecolor(bar_value_color.0, bar_value_color.1, bar_value_color.2)
                 .to_string(),
         );
