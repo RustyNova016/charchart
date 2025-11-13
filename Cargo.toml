@@ -1,0 +1,14 @@
+[package]
+name = "charchart"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85.0"
+
+[dependencies]
+bon = "3.8.1"
+owo-colors = "4.2.3"
+rust_decimal = {version = "1.39.0", default-features = false, features = ["std"]}
+
+[[example]]
+name = "bar_graph"
+path = "examples/bar_graph.rs"
