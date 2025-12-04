@@ -43,7 +43,7 @@ impl BarGraph {
         let mut line = String::new();
 
         // How many chars should it take?
-        let chars = (data.value / max_y) * Decimal::from(self.width);
+        let chars = data.value.checked_div(max_y).unwrap_or_default() * Decimal::from(self.width);
         let bar_character = data.bar_character.as_ref().unwrap_or(&self.bar_character);
 
         for _ in 0..chars
